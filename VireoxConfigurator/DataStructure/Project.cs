@@ -196,6 +196,6 @@ namespace VireoxConfigurator
 
         public ProjectException(string message, Exception inner) : base(message,inner) { }
     }
-
+       
    
 }

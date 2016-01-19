@@ -213,7 +213,7 @@
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
-        <TabControl Grid.Row="2" Grid.Column="1" >
+        <TabControl Grid.Row="1" Grid.Column="1" Margin="1,25,-1,5" Grid.RowSpan="2" >
             <TabItem Name="Dummy" Height="20" Header="Proprietà">
                 <ContentPresenter x:Name="detailPresenter"  ScrollViewer.CanContentScroll="True" Grid.IsSharedSizeScope="True" IsManipulationEnabled="True" Margin="2,2,2,2">
                     <ContentPresenter.Resources>
@@ -437,6 +437,8 @@
                     </ContentPresenter.Resources>
                 </ContentPresenter>
             </TabItem>
+
+
             <TabItem Header="Logiche" Height="20">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -463,6 +465,58 @@
     FontSize="10pt" Grid.Row="1" ShowLineNumbers="True" Grid.ColumnSpan="4"/>
                 </Grid>
             </TabItem>
+            <!--<TabItem x:Name="ProjectTab" Header="Progetto">
+                <Grid Margin="0,1,0,-1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="155*"/>
+                        <ColumnDefinition Width="451*"/>
+                        <ColumnDefinition Width="78"/>
+                        <ColumnDefinition Width="78"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="27"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Protocollo" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Label Content="Attivo" Grid.Row="0" Grid.Column="2"/>
+                    <Label Content="Log" Grid.Row="0" Grid.Column="3"/>
+                    <ComboBox x:Name="ProtocolsChoice" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="2" Grid.ColumnSpan="2"/>
+                    <CheckBox x:Name="enableProtocol" VerticalAlignment="Center" HorizontalAlignment="left" Grid.Column="2" Grid.Row="1" Margin="6,8,0,8"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Margin="4"/>
+                    <Label x:Name="gridTitle" Content="{Binding Name}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" FontSize="13.333" FontWeight="Bold" Height="30" Grid.RowSpan="2"/>
+                    <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="3,3,3,0" Style="{StaticResource dGrid}">
+                        <DataGrid.Resources>
+                            <DataTemplate x:Name="checkboxTemplate" x:Key="checkboxTemplate">
+                                <CheckBox x:Name="checkbox_editMethod" Style="{StaticResource checkBoxCell}" LostFocus="checkbox_leaf_LostFocus"/>
+                            </DataTemplate>
+                            <DataTemplate x:Name="comboboxTemplate" x:Key="comboboxTemplate">
+                                <ComboBox Style="{StaticResource comboBoxCell}" x:Name="combobox_editMethod" LostFocus="combobox_leaf_LostFocus"/>
+                            </DataTemplate>
+                            <DataTemplate x:Name="textboxTemplate" x:Key="textboxTemplate">
+                                <TextBox Style="{StaticResource textBoxCell}" x:Name="textbox_editMethod"  LostFocus="textbox_leaf_LostFocus"/>
+                            </DataTemplate>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="1*" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate x:Name="column1test" DataType="local:PropertyItem">
+                                        <TextBlock x:Name="nomeprop" Style="{StaticResource cellLabel}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn x:Name="paramsColumn" Header="Valore" CanUserSort="True" Width="2*">
+                                <DataGridTemplateColumn.CellTemplateSelector>
+                                    <local:PropertyTemplateSelector/>
+                                </DataGridTemplateColumn.CellTemplateSelector>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="saveButton" Content="Save"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="76" Height="20" Click="btn_saveProject_Click" HorizontalContentAlignment="Center" Margin="0,3,2,4" Grid.Column="3" Grid.Row="3"/>
+                    <Button x:Name="cancelButton" Content="Cancel"  Width="76" Click="btn_cancel_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Grid.Column="2" Grid.Row="3" Margin="0,3,0,4"/>
+                </Grid>
+            </TabItem>-->
         </TabControl>
         <FlowDocumentScrollViewer x:Name="LogBox" Grid.Row="3" Grid.Column="1" Margin="0,5,0,0"  Background="#FFF0F0F0" Padding="0" IsManipulationEnabled="True">
             <FlowDocumentScrollViewer.ContextMenu>
