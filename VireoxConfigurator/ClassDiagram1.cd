@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VireoxConfigurator.App" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Flusso" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>DataStructure\Flusso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Nodo" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBgAQgAAAABAYYEIAAEBAQBgAAEAREEAAAhAAAgAAA=</HashCode>
+      <FileName>DataStructure\Nodo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VireoxConfigurator.Project" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAACIAAAAAAAAAAAAAgAAAgCABAAACAAA=</HashCode>
+      <FileName>DataStructure\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.ProjectException" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataStructure\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.PropertyItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAQIAIAAAAAQAgAAEACAAAAAgAABAAAA=</HashCode>
+      <FileName>DataStructure\PropertyItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.PropertyList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABAQCAAABAQAAAAAAgAEAAAgAABSIAA=</HashCode>
+      <FileName>DataStructure\PropertyList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.Variable" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAJAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>DataStructure\Variable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.ComProtocol" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Definition\ComProtocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.root" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiACAgAIABCAAAAAIAAAAAAGAAAAABAABAAAAAAAA=</HashCode>
+      <FileName>Definition\ProjectSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.groupType" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAgAAAAAAAEAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Definition\ProjectSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.proprietaType" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABEYAIACAAAIIAAEAIACAkAhQCBkAAAAAAUABAMBCAA=</HashCode>
+      <FileName>Definition\ProjectSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Protocol" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAIAAAAAAAAEAJAQCAAABAQAAAAAAAAEAAAgAABQMBA=</HashCode>
+      <FileName>Definition\Protocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VireoxConfigurator.ComDefinitions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAJAEABAQCAAABAQAAABAQAAEAAAgEABUIAA=</HashCode>
+      <FileName>Definition\StaticDefinitions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VireoxConfigurator.VarDefinitions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAJAEABAQCAAABAQAAABAQAAEAAAgEABUIAA=</HashCode>
+      <FileName>Definition\StaticDefinitions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.ProjectDefinitions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SAIAAEAAAJAEABAQCAAABAQAAAAAQAAEAAAgAABQMBA=</HashCode>
+      <FileName>Definition\StaticDefinitions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.VarProtocol" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Definition\VarProtocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.FileManager" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAgAIQAAACAAAAAAgEOAAgAAIAAQAAAAAAEAAAAQgA=</HashCode>
+      <FileName>FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.FileManagerException" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.BrushColorConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GuiHelpers\BrushColorConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.CommonColorConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GuiHelpers\BrushColorConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.NodoView" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAQCAAAAAAAQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>GuiHelpers\NodoView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.GroupView" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAECBAAAAAQAAAAQAABgAABAAAAAAA=</HashCode>
+      <FileName>GuiHelpers\NodoView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.PropertyTemplateSelector" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GuiHelpers\PropertyTemplateSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.VisualTreeHelperExtension" Collapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GuiHelpers\VisualTreeHelperExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Logger" Collapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAAAAAEIAAACAAgAAgAgAAAAABAAABAAQA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.StartupClass" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AaQAAQADgCEQBAiGAogFAQiAMUKJA8BAIMAUyqMBKDE=</HashCode>
+      <FileName>Main_Menubar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VireoxConfigurator.Properties.Resources" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Properties.Settings" Collapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Foglia" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAIAICBAAAAARAAAAAAAAiAABAAAiAAA=</HashCode>
+      <FileName>DataStructure\Foglia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VireoxConfigurator.Canale" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAABAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>DataStructure\Canale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

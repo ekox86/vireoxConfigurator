@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:VireoxConfigurator">
+    <Image x:Shared="False"  Source="/VireoxConfigurator;Component/img/recente.png" Margin="3" x:Key="filerecente"/>
+    <Image x:Shared="False"  Source="/VireoxConfigurator;Component/img/help.png" Margin="3" x:Key="help"/>
+    <Image x:Shared="False" x:Key="verifica"   Source="/VireoxConfigurator;Component/img/verifica.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="verifica_tbar"   Source="/VireoxConfigurator;Component/img/verifica.png" Margin="1"/>
+    <Image x:Shared="False" x:Key="esportaConfig" Source="/VireoxConfigurator;Component/img/esportaconfig.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="esportaConfig_tbar" Source="/VireoxConfigurator;Component/img/esportaconfig.png" Margin="1"/>
+    <Image x:Shared="False" x:Key="esportaRiavvia" Source="/VireoxConfigurator;Component/img/esportariavvia.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="esportaRiavvia_tbar" Source="/VireoxConfigurator;Component/img/esportariavvia.png" Margin="1"/>
+    <Image x:Shared="False" x:Key="riavvia" Source="/VireoxConfigurator;Component/img/riavvia.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="riavvia_tbar" Source="/VireoxConfigurator;Component/img/riavvia.png" Margin="1"/>
+    <Image x:Key="info" Source="/VireoxConfigurator;Component/img/info.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="salva" Source="/VireoxConfigurator;Component/img/salva.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="salva_tbar" Source="/VireoxConfigurator;Component/img/salva.png" Margin="1"/>
+    <Image x:Key="recenti" Source="/VireoxConfigurator;Component/img/recenti.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="esportazioni"  Source="/VireoxConfigurator;Component/img/esportazioni.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="salvanome" Source="/VireoxConfigurator;Component/img/salvanome.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="salvanome_tbar" Source="/VireoxConfigurator;Component/img/salvanome.png" Margin="1"/>
+    <Image x:Shared="False" x:Key="apri" Source="/VireoxConfigurator;Component/img/apri.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="apri_tbar" Source="/VireoxConfigurator;Component/img/apri.png" Margin="1"/>
+    <Image x:Shared="False" x:Key="nuovo"  Source="/VireoxConfigurator;Component/img/nuovo.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="nuovo_tbar"  Source="/VireoxConfigurator;Component/img/nuovo.png" Margin="1"/>
+    <Image x:Shared="False" x:Key="importaCSV"  Source="/VireoxConfigurator;Component/img/importaCSV.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="esportaCSV"  Source="/VireoxConfigurator;Component/img/esportaCSV.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="indirizzo"  Source="/VireoxConfigurator;Component/img/indirizzo.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="elimina"  Source="/VireoxConfigurator;Component/img/cancella.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="rinomina"  Source="/VireoxConfigurator;Component/img/rinomina.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="nuovonodo"  Source="/VireoxConfigurator;Component/img/nuovonodo.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="nuovoflusso"  Source="/VireoxConfigurator;Component/img/nuovoflusso.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="nuovafoglia"  Source="/VireoxConfigurator;Component/img/nuovafoglia.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="nuovocanale"  Source="/VireoxConfigurator;Component/img/nuovocanale.png" Margin="3"/>
+    <Image x:Shared="False" x:Key="enable"  Source="/VireoxConfigurator;Component/img/enable.png" Margin="3"/>
+
+    <Image x:Key="clearlog"  Source="/VireoxConfigurator;Component/img/clearlog.png" Margin="3"/>
+    <ImageSource x:Key="folder">/VireoxConfigurator;Component/img/folder.png</ImageSource>
+    <ImageSource x:Key="canale">/VireoxConfigurator;Component/img/canale.png</ImageSource>
+    <ImageSource x:Key="flusso">/VireoxConfigurator;Component/img/flusso.png</ImageSource>
+    <ImageSource x:Key="variabile">/VireoxConfigurator;Component/img/variabile.png</ImageSource>
+</ResourceDictionary>

@@ -1,0 +1,80 @@
+﻿<Window x:Class="VireoxConfigurator.DefinitionsEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VireoxConfigurator"
+        mc:Ignorable="d"
+        Title="DefinitionsEditor" Height="400" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+            <ColumnDefinition Width="90*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBox" Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:Protocol}">
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>            
+        </ListBox>
+        <GridSplitter Grid.Row="1" Grid.Column="0" x:Name="gridSplitter"  Width="5"/>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" DataContext="{Binding ElementName=listBox, Path=SelectedItem}" ItemsSource="{Binding Path=PropertiesDef}" AutoGenerateColumns="False" CanUserResizeRows="False" CanUserAddRows="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Nome" CanUserSort="True" Width="1*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate  DataType="local:proprietaType" >
+                            <TextBox Text="{Binding name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Nome Visualizzato" CanUserSort="True" Width="1*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate  DataType="local:proprietaType" >
+                            <TextBox Text="{Binding NomeVisualizzato}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Nome Esportazione" CanUserSort="True" Width="1*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="local:proprietaType"  >
+                            <TextBox Text="{Binding NomeEsportazioneGPM}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Visibile" CanUserSort="True" Width="1*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="local:proprietaType"  >
+                            <CheckBox IsChecked="{Binding Visibile}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Definito" CanUserSort="True" Width="1*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="local:proprietaType"  >
+                            <CheckBox IsChecked="{Binding TipoDefinito}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Opzioni" CanUserSort="True" Width="1*"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="local:proprietaType"  >
+                            <TextBox Text="{Binding parametri}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.RowSpan="1"  Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Name="btn_flussi" Content="Flussi" Width="80" Margin="2" Click="btn_flussi_Click"/>
+            <Button Name="btn_canali" Content="Canali" Width="80" Margin="2" Click="btn_canali_Click"/>
+            <Button Name="btn_progetto" Content="Progetto" Width="80" Margin="2" Click="btn_progetto_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

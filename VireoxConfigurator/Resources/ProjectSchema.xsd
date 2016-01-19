@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xsd:complexType name="macroGroupType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="gruppo" type="groupType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="groupType">
+        <xsd:sequence>
+            <xsd:element name="proprieta" maxOccurs="unbounded" type="proprietaType"> </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="proprietaType">
+        <xsd:sequence>
+            <xsd:element name="NomeVisualizzato" type="xsd:string"/>
+            <xsd:element name="GruppoVisualizzazione" type="xsd:string"/>
+            <xsd:element name="NomeSalvato" type="xsd:string"/>
+            <xsd:element name="NomeEsportazioneGPM" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="DefaultValue" type="xsd:string"/>
+            <xsd:element name="Visibile" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="TipoDefinito" type="xsd:boolean"/>
+            <xsd:element name="Ordine" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element minOccurs="0" name="Help" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="parametro" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+
+    <xsd:element name="root">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Progetto" type="groupType"/>
+                <xsd:element name="Nodo" type="groupType"/>
+                <xsd:element name="Variabile" type="groupType"/>
+                <xsd:element name="Users" type="groupType"/>
+                <xsd:element name="Comunicazioni" type="macroGroupType"/>
+                <xsd:element name="Protocolli" type="macroGroupType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="17.0">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options>
+            <serialized version="17.0" xml:space="preserve">
+                <serializableOrderedMap>
+                    <entry>
+                        <String>enable.project.master.files.support</String>
+                        <Boolean>true</Boolean>
+                    </entry>
+                </serializableOrderedMap>
+            </serialized>
+        </options>
+    </meta>
+    <projectTree name="ConfiguratorProject.xpr">
+        <folder masterFiles="true" name="Master Files">
+            <file name="ProjectSchema.xsd"/>
+        </folder>
+        <file name="../../../../Users/Antonio/Desktop/Montefano%20-%20r1120160108175157543.xml"/>
+        <file name="file:/C:/Lavori/VireoxConfiguratorwc/VireoxConfigurator/Resources/ProjectSchema.xsd">
+            <file name="../bin/Debug/Resources/StaticDefinitions.xml"/>
+        </file>
+        <file name="../bin/Debug/Resources/StaticDefinitions.xml"/>
+    </projectTree>
+</project>
