@@ -12,6 +12,8 @@ using System.ComponentModel;
 
 namespace VireoxConfigurator
 {
+    [XmlInclude(typeof(Report61850Nodo))]
+    [XmlInclude(typeof(Report61850))]
     public class Nodo : INotifyPropertyChanged
 
     {
@@ -216,6 +218,58 @@ namespace VireoxConfigurator
                 actualNode = nextNode;
             }
         }
+        internal void addReport61850NodeGPRJ(string path, Dictionary<string, string> props)
+        {
+            string[] pathFields = path.Split(';');
+            Nodo actualNode = this, nextNode = null;
+            for (int i = 0; i < pathFields.Length; i++)
+            {
+                nextNode = actualNode.Children.FirstOrDefault(x => x.name == pathFields[i]);
+                if (nextNode != null)
+                {
+                    actualNode = nextNode;
+                    continue;
+                }
+                else if (i != pathFields.Length - 1)
+                {
+                    actualNode.Append(nextNode = new Report61850Nodo(pathFields[i], actualNode, true));
+                }
+                else
+                {
+                    switch (props["Tipo"])
+                    {
+                        case "Nodo":
+                            actualNode.Append(nextNode = new Report61850Nodo(pathFields[i], actualNode, Boolean.Parse(props["Enabled"].ToLower())));
+                            break;
+                        case "Protocollo":
+                            actualNode.Append(nextNode = new Report61850(pathFields[i], actualNode, Boolean.Parse(props["Enabled"])));
+                            Report61850 f = nextNode as Report61850;
+                            f.ProtocolName = props["SottoTipo"];
+                            if (f.ProtocolDefs == null)
+                            {
+                                var pname = VarDefinitions.Map.Keys.FirstOrDefault(x => Regex.IsMatch(props["SottoTipo"], x, RegexOptions.IgnoreCase));
+                                if (pname != null)
+                                    f.ProtocolName = pname;
+                                else
+                                {
+                                    Logger.Log("Protocollo non trovato per il flusso " + f.Path, "Red");
+                                    continue;
+                                }
+                            }
+                            foreach (var pt in f.ProtocolDefs)
+                            {
+                                if (!pt.Value.Visibile) continue;
+                                string v = null;
+                                if (props.ContainsKey(pt.Value.NomeSalvato))
+                                    v = props[pt.Value.NomeSalvato];
+                                f.propertylist.Add(new PropertyItem(pt.Value.NomeVisualizzato, v, pt.Value));
+                            }
+                            break;
+                    }
+                }
+                actualNode = nextNode;
+            }
+        }
 
         internal void addComNodeGPRJ(string path, Dictionary<string, string> props)
         {
@@ -271,6 +325,8 @@ namespace VireoxConfigurator
             }
 
         }
+
+
         /// <summary>
         /// Aggiunge una variabile al nodo a partire dalla stringa path e dal numero di indentazioni
         /// </summary>
@@ -504,6 +560,7 @@ namespace VireoxConfigurator
             }
             return c;
         }
+
     }
 
 

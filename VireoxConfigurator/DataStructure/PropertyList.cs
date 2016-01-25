@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace VireoxConfigurator
         {
             get
             {
-                return pList.FirstOrDefault(x => x.Name == key).Value;
+                return pList.FirstOrDefault(x => x.Name == key)?.Value;
             }
 
             set
@@ -153,6 +154,7 @@ namespace VireoxConfigurator
                 return false;
             }
         }
+        
 
         public bool Remove(string key)
         {
@@ -187,7 +189,7 @@ namespace VireoxConfigurator
         {
             return pList.GetEnumerator();
         }
-        public PropertyItem getpItem(String name )
+        public PropertyItem getpItem(String name)
         {
             return pList.FirstOrDefault(x => x.Name == name);
         }

@@ -80,7 +80,8 @@ namespace VireoxConfigurator
             if (Regex.IsMatch(prName, "Aggiungi")) return;
             Foglia f;
             Nodo father;
-            if (tb.DataContext.GetType() == typeof(Variable))
+            Type type = tb.DataContext.GetType();
+            if (type == typeof(Variable))
             {
                 father = tb.DataContext as Variable;
                 f = new Flusso();
@@ -111,18 +112,24 @@ namespace VireoxConfigurator
             TreeViewItem tvd = SelectItem(f);
             enableRenameMode(tvd);
         }
-        private void mitem_newFlux_Click(object sender, RoutedEventArgs e)
+        private void mitem_newReport61850(object sender, RoutedEventArgs e)
         {
             MenuItem tb = sender as MenuItem;
-            MenuItem ft = tb.TemplatedParent as MenuItem;
-            Nodo father = ft.DataContext as Nodo;
-            string prName = tb.Header as string;
-            Flusso f = new Flusso();
-            f.Name = prName;
-            f.ProtocolName = prName;
+            Report61850 f;
+            Nodo father=tb.DataContext as Nodo;
+            f = new Report61850();
+            f.ProtocolName = "Reports61850";
             f.setDefaultPropertyList();
             f.Father = father;
             father.Append(f);
+            ContextMenu cm = tb.Parent as ContextMenu;
+            Grid g = cm.PlacementTarget as Grid;
+            TreeViewItem tvi = getParentOfType<TreeViewItem>(g);
+            if (!tvi.IsExpanded)
+                tvi.IsExpanded = true;
+            tvi.UpdateLayout();
+            TreeViewItem tvd = SelectItem(f);
+            enableRenameMode(tvd);
         }
         private void mitem_newnode_click(object sender, RoutedEventArgs e)
         {
@@ -136,10 +143,12 @@ namespace VireoxConfigurator
                 i++;
                 newName = String.Format("Nuovo Gruppo ({0})", i);      
             }
-            if (tipo == typeof(VarNodo) || father.Name == "Memoria Globale")
+            if (tipo == typeof(VarNodo) || father.Name == "Memoria Globale" || father.Name=="Altro")
                 n = new VarNodo(newName,father,true);
             else if (tipo == typeof(ComNodo) || father.Name == "Comunicazione")
                 n = new ComNodo(newName,father,true);
+            else if (tipo == typeof(Report61850Nodo) || father.Name == "IEC 61850 - Reports")
+                n = new Report61850Nodo(newName, father, true);
             n.Father = father;
             ContextMenu cm = mi.Parent as ContextMenu;
             Grid g = cm.PlacementTarget as Grid;

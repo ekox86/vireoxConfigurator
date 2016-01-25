@@ -32,10 +32,10 @@
     <Image x:Shared="False" x:Key="nuovafoglia"  Source="/VireoxConfigurator;Component/img/nuovafoglia.png" Margin="3"/>
     <Image x:Shared="False" x:Key="nuovocanale"  Source="/VireoxConfigurator;Component/img/nuovocanale.png" Margin="3"/>
     <Image x:Shared="False" x:Key="enable"  Source="/VireoxConfigurator;Component/img/enable.png" Margin="3"/>
-
     <Image x:Key="clearlog"  Source="/VireoxConfigurator;Component/img/clearlog.png" Margin="3"/>
     <ImageSource x:Key="folder">/VireoxConfigurator;Component/img/folder.png</ImageSource>
     <ImageSource x:Key="canale">/VireoxConfigurator;Component/img/canale.png</ImageSource>
     <ImageSource x:Key="flusso">/VireoxConfigurator;Component/img/flusso.png</ImageSource>
     <ImageSource x:Key="variabile">/VireoxConfigurator;Component/img/variabile.png</ImageSource>
+
 </ResourceDictionary>

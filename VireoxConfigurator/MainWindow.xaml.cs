@@ -13,6 +13,7 @@ using Microsoft.Win32;
 using System.Xml.Serialization;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace VireoxConfigurator
 {
@@ -174,6 +175,10 @@ namespace VireoxConfigurator
         private void rebootGW(string ip, string port, bool isMaster)
         {
             string gwName = isMaster ? "Master" : "Slave";
+            if (isMaster && !Regex.IsMatch(progetti[0].Properties["IPMaster"], "localhost|127\\.0\\.0\\.1")) {
+                if (MessageBox.Show("L'ip del master non coincide con quello del localhost. Proseguire con il riavvio?", "Avviso", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                    return;
+            }
             if (ip == null || port == null)
             {               
                 Logger.Log("Impossibile riavviare gateway "+gwName+", ip/porta non definiti.", "Red");
@@ -405,7 +410,7 @@ namespace VireoxConfigurator
             //textEditor.Save(configDir + "\\user_logics.php");
         }
 
- 
+
 
         private void saveNameScriptClick(object sender, RoutedEventArgs e)
         {
@@ -476,7 +481,6 @@ namespace VireoxConfigurator
             {
                 source = new DirectoryInfo(sourcePath + "\\libs");
                 target = new DirectoryInfo(targetPath + "\\libs");
-
                 if (source.FullName.ToLower() == target.FullName.ToLower())
                 {
                     return;

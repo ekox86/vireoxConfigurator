@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using System.Linq.Expressions;
 using System.Linq;
+using System.Diagnostics;
 
 namespace VireoxConfigurator
 {
@@ -16,7 +17,15 @@ namespace VireoxConfigurator
         PropertyList propertyValues;
         Dictionary<string, proprietaType> defs;
         StringCollection enVarProts,enComProts;
+        ObservableCollection<ProjectProtocol> protocolli;
         int firstfreegmaddress;
+        //[XmlArray("Protocolli",IsNullable =true)]
+        [XmlIgnore]
+        public ObservableCollection<ProjectProtocol> Protocolli
+        {
+            get { return protocolli; }
+            set { protocolli = value; OnPropertyChanged("Protocolli"); }
+        }
         [XmlIgnore]
         public int FreeGMAddress
         {
@@ -44,7 +53,13 @@ namespace VireoxConfigurator
             set {  }
         }
         [XmlIgnore]
-        public Nodo UsrTree
+        public Nodo Rep61850Tree
+        {
+            get { return children[2].Children[0]; }
+            set { }
+        }
+        [XmlIgnore]
+        public Nodo OtherTree
         {
             get { return children[2]; }
             set { }
@@ -59,6 +74,7 @@ namespace VireoxConfigurator
             set
             {
                 propertyValues.Properties = value;
+                OnPropertyChanged("propertylist");
             }
         }
         [XmlIgnore]
@@ -67,8 +83,12 @@ namespace VireoxConfigurator
         public StringCollection EnabledComProtocols { get { return enComProts; } }
         [XmlIgnore]
         public StringCollection EnabledVarProtocols { get { return enVarProts; } }
+        /// <summary>
+        /// Questo costruttore anche se non ha riferimenti viene chiamato dall'XMLSerializer e va lasciato dov'è 
+        /// </summary>
         public Project()
         {
+            protocolli = new ObservableCollection<ProjectProtocol>();
             defs = ProjectDefinitions.Map;
             propertyValues = new PropertyList();
             enVarProts = new StringCollection();
@@ -78,10 +98,12 @@ namespace VireoxConfigurator
         }
         public Project(bool xml)
         {
+            protocolli = new ObservableCollection<ProjectProtocol>();
             name = "Progetto";
             children.Add(new Nodo("Comunicazione", this, true));
             children.Add(new Nodo("Memoria Globale", this, true));
-            children.Add(new Nodo("Utenti",this,true));
+            children.Add(new Nodo("Altro", this, true));
+            OtherTree.Children.Add(new Report61850Nodo("IEC 61850 - Reports", OtherTree, true));
             propertyValues = new PropertyList();
             defs = ProjectDefinitions.Map;
             enVarProts = new StringCollection();
@@ -101,7 +123,7 @@ namespace VireoxConfigurator
         /// <summary>
         /// Ricostruisce i riferimenti dell'albero deserializzato a partire dal file XML (rapporti padre-figlio e riferimenti alle definizioni delle proprietà)
         /// </summary>
-        public override void rebuild ()
+        public override void rebuild()
         {
             base.rebuild();
             List<proprietaType> hs = defs.Values.Where(x => x.Visibile).ToList();
@@ -109,7 +131,7 @@ namespace VireoxConfigurator
             {
                 if (!defs.ContainsKey(pi.Name))
                 {
-                    Logger.Log("Attenzione, definizione della proprietà '" + pi.Name + "' non trovata per il progetto " , "Red");
+                    Logger.Log("Attenzione, definizione della proprietà '" + pi.Name + "' non trovata per il progetto ", "Red");
                     continue;
                 }
                 pi.setPropertyDef(defs[pi.Name]);
@@ -123,9 +145,36 @@ namespace VireoxConfigurator
                     propertylist.Add(pnew);
                 }
             }
+            buildProtocolliList();
+        }
+        void buildProtocolliList()
+        {
+            string name="";
+            int log=0;
+            bool enabled = false;
+            foreach (var cp in ComDefinitions.Map)
+            {
+                name = cp.Key;
+                string enKey = cp.Key + " Enabled";
+                if (Properties.ContainsKey(enKey))
+                {
+                    if (!Boolean.TryParse(Properties[enKey], out enabled)) enabled = false;
+                    //Properties.Remove(enKey);
+                }
+                else
+                    enabled = false;
+                string lkey = cp.Key + " Log";
+                if (Properties.ContainsKey(lkey))
+                {
+                    if (!Int32.TryParse(Properties[lkey], out log)) log = 0;
+                   //Properties.Remove(lkey);
+                }
+                else
+                    log = 0;
+                protocolli.Add(new ProjectProtocol(name, enabled, log));
+            }           
 
         }
-
         internal void addPropertiesGPRJ(Dictionary<string, string> props)
         {
             foreach (proprietaType pt in ProjectDefinitions.Map.Values)
@@ -137,8 +186,8 @@ namespace VireoxConfigurator
                 propertylist.Add(new PropertyItem(pt.NomeVisualizzato, v, pt));               
             }
             updateEnabledProtocolList();
+            buildProtocolliList();
         }
-
         //public  void linkChannels()
         //{
         //    List<Canale> cni = new List<Canale>();
@@ -186,6 +235,49 @@ namespace VireoxConfigurator
             firstfreegmaddress = max + 1;
         }
     }
+    public class ProjectProtocol : INotifyPropertyChanged
+    {
+        bool enabled;
+        int log;
+        string name;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ProjectProtocol() { }
+        public ProjectProtocol(string p,bool e, int l)
+        {
+            enabled = e;
+            name = p;
+            log = l;
+        }
+        [XmlAttribute]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; OnPropertyChanged("Name"); }
+        }
+        [XmlAttribute]
+        public bool Enabled
+        {
+            get { return enabled; }
+            set { enabled = value; OnPropertyChanged("Enabled"); }
+        }
+        [XmlAttribute]
+        public int Log
+        {
+            get { return log; }
+            set { log = value; OnPropertyChanged("Log"); }
+        }
+        protected void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+        }
+
+        public override string ToString()
+        {
+            return name;
+        }
+    }
+
 
     [Serializable]
     class ProjectException : Exception

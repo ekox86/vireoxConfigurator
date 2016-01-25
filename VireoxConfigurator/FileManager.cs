@@ -305,11 +305,26 @@ namespace VireoxConfigurator
                         case "Altro":
                             if (firstOth)
                             {
-                                p.ComTree.addComNodeGPRJ(prevPath, nodeProps);
+                                if (pathFields[1] == "User") continue;
+                                p.ComTree.addComNodeGPRJ(prevPath, nodeProps);                               
+                                prevPath = path;
                                 nodeProps.Clear();
                                 firstOth = false;
                             }
-                            break;
+                            
+                            if (path == prevPath)
+                            {
+                                if (!nodeProps.ContainsKey(propName) && !Regex.IsMatch(propName, "false|true", RegexOptions.IgnoreCase) && !String.IsNullOrWhiteSpace(propValue))
+                                    nodeProps.Add(propName, propValue);
+                            }
+                            else
+                            {
+                                p.OtherTree.addReport61850NodeGPRJ(prevPath, nodeProps);
+                                nodeProps.Clear();
+                                nodeProps.Add(propName, propValue);
+                            }
+                            prevPath = path;
+                            break;                            
                     }
                     lineCounter++;
                 }
@@ -320,7 +335,7 @@ namespace VireoxConfigurator
             }
             catch (Exception e)
             {
-                throw new ProjectException("Error loading project file " + file + " at line: " + lineCounter + "-" + e.Message, e);
+                Logger.Log("Errore durante il caricamento del file " + file + " sulla linea: " + lineCounter + "-" + e.Message + " -" + e.StackTrace);
             }
             finally
             {
@@ -516,6 +531,10 @@ namespace VireoxConfigurator
                 if (nodidascrivere.Count != 0)
                 {
                     writeVarConfFile(dir, nodidascrivere, vp);
+                    if (vp.Key== "IEC 61850")
+                    {
+                        writeReports61850File(p, dir);
+                    }
                 }
             }
             flussi.Clear();
@@ -536,6 +555,50 @@ namespace VireoxConfigurator
                 copyDir(dir,destfolder,true);
                 writeStationFile(destfolder, p, 2);
             }
+        }
+
+        private static void writeReports61850File(Project p, string dir)
+        {
+            if (p.Rep61850Tree.Children.Count == 0) return;
+            Protocol definitions = VarDefinitions.Map["Reports61850"];
+            string fileName = Path.Combine(dir, definitions["a"].DefaultValue);
+            StreamWriter sw = null;
+            List<Foglia> nodidascrivere = new List<Foglia>();
+            string valueString;
+            p.Rep61850Tree.getLeaves(nodidascrivere, true);
+            Logger.Log("Scrittura file " + definitions["a"].DefaultValue + "...");
+            try
+            {
+                sw = new StreamWriter(fileName);
+                foreach (Report61850 f in nodidascrivere)
+                {
+                    sw.WriteLine("[" + f.Path + "]");
+                    sw.WriteLine("Description=" + f.Name);
+                    sw.WriteLine("GM.Address=NULL");
+                    foreach (proprietaType defProp in definitions.Values)
+                    {
+                        if (defProp.NomeEsportazioneGPM == "false") continue;
+                        if (defProp.name.ToLower() == "namenodo")
+                            valueString = f.Name;
+                        else if (defProp.name.ToLower() == "mastername")
+                            valueString = f.Father.Name;
+                        else
+                            valueString = f[defProp.NomeVisualizzato];
+                        if (String.IsNullOrWhiteSpace(valueString)) continue;
+                        sw.WriteLine(defProp.NomeEsportazioneGPM + "=" + valueString);
+                    }
+                    sw.WriteLine("");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new FileManagerException("Error writing file " + fileName, e);
+            }
+            finally
+            {
+                if (sw != null) sw.Close();
+            }
+
         }
 
         public static void writeScript(Project p, string dir=".\\Config")
@@ -674,15 +737,6 @@ namespace VireoxConfigurator
                     sw.WriteLine("[" + f.Path + "]");
                     sw.WriteLine("Description=" + f.Father.Path.Substring(16));
                     sw.WriteLine("GM.Address=" + ((Variable)f.Father).Address);
-                    //foreach (var property in f.propertylist)
-                    //{                        
-                    //    if (String.IsNullOrWhiteSpace(property.Value)) continue;
-                    //    if (!definitions.ContainsKey(property.Name))
-                    //        continue;
-                    //    proprietaType defProp = definitions[property.Name];
-                    //    if (defProp.NomeEsportazioneGPM == "false") continue;
-                    //    sw.WriteLine(defProp.NomeEsportazioneGPM + "=" + property.Value);
-                    //}
                     foreach (proprietaType defProp in definitions.Values)
                     {
                         if (defProp.NomeEsportazioneGPM == "false") continue;
@@ -814,12 +868,14 @@ namespace VireoxConfigurator
                 tlist.Add(typeof(Nodo));
                 tlist.Add(typeof(VarNodo));
                 tlist.Add(typeof(ComNodo));
+                tlist.Add(typeof(Report61850Nodo));
+                tlist.Add(typeof(Report61850));
                 tlist.Add(typeof(Foglia));
                 tlist.Add(typeof(Canale));
                 tlist.Add(typeof(Variable));
                 tlist.Add(typeof(Flusso));
                 tlist.Add(typeof(PropertyItem));
-                xSer = new XmlSerializer(typeof(Project), tlist.ToArray());
+                xSer = new XmlSerializer(typeof(Project));
                 sw = new StreamWriter(xmlfilename);
                 xSer.Serialize(sw, progetto);
                 sw.Close();

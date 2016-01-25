@@ -134,7 +134,7 @@ namespace VireoxConfigurator
         }
         private void mbar_salva_click(object sender, RoutedEventArgs e)
         {
-            if (gridChanged || progetti[0].Properties["Script"] != textEditor.Text)
+            if (gridChanged || progetti[0]?.Properties["Script"] != textEditor.Text)
             {
                 if (MessageBox.Show("Applicare le modifiche alla schermata corrente prima di salvare?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {

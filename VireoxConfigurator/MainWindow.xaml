@@ -83,11 +83,7 @@
                         <Image Grid.Column="0" Source="{StaticResource flusso}" Style="{StaticResource treeImg}"/>
                         <TextBlock Grid.Column="1" x:Name="treeNode" Style="{StaticResource textNode}"/>
                         <TextBox Grid.Column="1" x:Name="tBox" Style="{StaticResource tBoxTree}"  LostFocus="tBox_LostFocus"  />
-                        <!--<Grid.CommandBindings>
-                            <CommandBinding x:Name="tagliaFlusso" Command="ApplicationCommands.Cut" CanExecute="tagliacopia_CanExecute" Executed="taglia_Executed" />
-                            <CommandBinding x:Name="copiaFlusso"  Command="ApplicationCommands.Copy" CanExecute="tagliacopia_CanExecute" Executed="copia_Executed"  />
-                        </Grid.CommandBindings>-->
-                        <Grid.ContextMenu>
+                         <Grid.ContextMenu>
                             <ContextMenu x:Name="nodoMenu">
                                 <MenuItem x:Name="removeItem" Header="Elimina" Click="mitem_Remove_Click" Style="{StaticResource menuStyle}" Icon="{StaticResource elimina}"/>
                                 <MenuItem x:Name="renameItem" Header="Rinomina" Click="mitem_rename_click" Style="{StaticResource menuStyle}" Icon="{StaticResource rinomina}"/>
@@ -140,6 +136,15 @@
                                 <MenuItem Header="Taglia" Command="ApplicationCommands.Cut" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}" Style="{StaticResource menuStyle}" />
                                 <MenuItem Header="Copia" Command="ApplicationCommands.Copy"  Style="{StaticResource menuStyle}" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
                                 <MenuItem Header="Incolla" Command="ApplicationCommands.Paste"  Style="{StaticResource menuStyle}" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                                <MenuItem Header="GMAddress">
+                                    <MenuItem>
+                                        <MenuItem.Header>
+                                            <StackPanel>
+                                            <TextBox x:Name="addressBox" Text="{Binding Address}" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Width="100" Margin="0"/>
+                                            </StackPanel>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    </MenuItem>
                             </ContextMenu>
                         </Grid.ContextMenu>
                     </Grid>
@@ -211,6 +216,49 @@
                         <TextBlock x:Name="tBlock" Text="{Binding Name}" Style="{StaticResource textNode}"/>
                     </Grid>
                 </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType  = "{x:Type local:Report61850Nodo}"	ItemsSource = "{Binding Children}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{StaticResource folder}" Style="{StaticResource treeImg}"/>
+                        <TextBlock Grid.Column="1" x:Name="treeNode" Style="{StaticResource textNode}"/>
+                        <TextBox Grid.Column="1" x:Name="tBox" Style="{StaticResource tBoxTree}"  LostFocus="tBox_LostFocus"  />
+                        <Grid.ContextMenu>
+                            <ContextMenu x:Name="nodoMenu">
+                                <MenuItem x:Name="newComNodeItem" Header="Aggiungi Nodo" Click="mitem_newnode_click" Style="{StaticResource menuStyle}" Icon="{StaticResource nuovonodo}" />
+                                <MenuItem x:Name="newChannelItem" Header="Aggiungi Report61850" Click="mitem_newReport61850" Style="{StaticResource menuStyle}" Icon="{StaticResource nuovocanale}"/>
+                                <MenuItem x:Name="removeItem" Header="Elimina" Click="mitem_Remove_Click"  Style="{StaticResource menuStyle}" Icon="{StaticResource elimina}"/>
+                                <MenuItem x:Name="renameItem" Header="Rinomina" Click="mitem_rename_click" Style="{StaticResource menuStyle}" Icon="{StaticResource rinomina}"/>
+                                <!--<MenuItem x:Name="disableItem" Header="Attiva/Disattiva" Click="mitem_Disable_Click"  Style="{StaticResource menuStyle}" Icon="{StaticResource enable}" />
+                                <MenuItem Header="Taglia" Command="ApplicationCommands.Cut" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}" Style="{StaticResource menuStyle}" />
+                                <MenuItem Header="Copia" Command="ApplicationCommands.Copy"  Style="{StaticResource menuStyle}" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>
+                                <MenuItem Header="Incolla" Command="ApplicationCommands.Paste"  Style="{StaticResource menuStyle}" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>-->
+                            </ContextMenu>
+                        </Grid.ContextMenu>
+                    </Grid>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType  = "{x:Type local:Report61850}">
+                    <Grid ToolTip="{Binding ProtocolName}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{StaticResource canale}" Style="{StaticResource treeImg}"/>
+                        <TextBlock Grid.Column="1" x:Name="treeNode" Style="{StaticResource textNode}"/>
+                        <TextBox Grid.Column="1" x:Name="tBox" Style="{StaticResource tBoxTree}"  LostFocus="tBox_LostFocus" />
+                        <Grid.ContextMenu>
+                            <ContextMenu x:Name="nodoMenu">
+                                <MenuItem x:Name="removeItem" Header="Elimina" Click="mitem_Remove_Click" Style="{StaticResource menuStyle}" Icon="{StaticResource elimina}"/>
+                                <MenuItem x:Name="renameItem" Header="Rinomina" Click="mitem_rename_click" Style="{StaticResource menuStyle}" Icon="{StaticResource rinomina}"/>
+                                <!--<MenuItem x:Name="disableItem" Header="Attiva/Disattiva" Click="mitem_Disable_Click" Style="{StaticResource menuStyle}" Icon="{StaticResource enable}"/>-->
+                                <!--<MenuItem Header="Taglia" Command="ApplicationCommands.Cut" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}" Style="{StaticResource menuStyle}" />
+                                <MenuItem Header="Copia" Command="ApplicationCommands.Copy"  Style="{StaticResource menuStyle}" CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"/>-->
+                            </ContextMenu>
+                        </Grid.ContextMenu>
+                    </Grid>
+                </DataTemplate>
             </TreeView.Resources>
         </TreeView>
         <TabControl Grid.Row="1" Grid.Column="1" Margin="1,25,-1,5" Grid.RowSpan="2" >
@@ -221,14 +269,15 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="419*"/>
-                                    <ColumnDefinition Width="78"/>
-                                    <ColumnDefinition Width="78"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="70*"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="90*"/>
                                 </Grid.RowDefinitions>
-                                <Label x:Name="gridTitle" Grid.Column="0" Grid.Row="0" DataContext="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13.333" FontWeight="Bold" Height="30">
+                                <Label x:Name="gridTitle" Grid.Column="0" Grid.Row="0" DataContext="{Binding}" Style="{StaticResource gridTitleLabel}">
                                     <Label.Content>
                                         <TextBlock>
                                             <TextBlock.Text>
@@ -240,9 +289,9 @@
                                         </TextBlock>
                                     </Label.Content>
                                 </Label>
-                                <Button x:Name="saveButton" Content="Save"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="76" Height="20" Click="btn_save_Click" HorizontalContentAlignment="Center" Margin="0,0,2,0" Grid.Column="2" Grid.Row="0"/>
-                                <Button x:Name="cancelButton" Content="Cancel"  Width="76" Click="btn_cancel_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Grid.Column="1" Grid.Row="0"/>
-                                <DataGrid x:Name="propGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" Style="{StaticResource dGrid}">
+                                <Button x:Name="saveButton" Click="btn_save_Click" Grid.Column="1" Grid.Row="1" Style="{StaticResource saveGridButton}"/>
+                                <Button x:Name="cancelButton"  Click="btn_cancel_Click" Grid.Column="2" Grid.Row="1" Style="{StaticResource cancelGridButton}"/>
+                                <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource dGrid}">
                                     <DataGrid.Resources>
                                         <DataTemplate x:Name="checkboxTemplate" x:Key="checkboxTemplate">
                                             <CheckBox x:Name="checkbox_editMethod" Style="{StaticResource checkBoxCell}" KeyDown="checkbox_editMethod_KeyDown" LostFocus="checkbox_leaf_LostFocus"/>
@@ -255,7 +304,7 @@
                                         </DataTemplate>
                                     </DataGrid.Resources>
                                     <DataGrid.Columns>
-                                        <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="1*" >
+                                        <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="394" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate x:Name="column1test" DataType="local:PropertyItem">
                                                     <TextBlock x:Name="nomeprop" Style="{StaticResource cellLabel}" />
@@ -275,22 +324,21 @@
                             <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="419*"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="35"/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="90*"/>
                                 </Grid.RowDefinitions>
-                                <Label x:Name="gridTitle" Content="{Binding Name}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" FontSize="13.333" FontWeight="Bold" Height="30"/>
-                                <Label x:Name="addressLabel" Content="GM Address:" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0"/>
-                                <TextBox x:Name="addressBox" Text="{Binding Address}" Grid.Column="2" Grid.ColumnSpan="2" Height="25"/>
-                                <Button x:Name="cancelButton" Content="Cancel"  Width="76" Click="btn_cancel_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Grid.Column="2" Grid.Row="1"/>
-                                <Button x:Name="saveButton" Content="Save"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="76" Height="20" Click="btn_save_Click" HorizontalContentAlignment="Center" Margin="0,0,2,0" Grid.Column="3" Grid.Row="1"/>
-                                <ComboBox x:Name="protocolComboBox" DataContext="{Binding ViewNode}" ItemsSource="{Binding GroupViewList}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding First}"/>
-                                <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="3" DataContext="{Binding ElementName=protocolComboBox,Path=SelectedValue}" Style="{StaticResource dGrid}" >
+                                <Label x:Name="gridTitle" Grid.Column="0" Grid.Row="0" Style="{StaticResource gridTitleLabel}">
+                                    <TextBlock Text="{Binding StringFormat=Variabile: {0},Path=Name}"/>
+                                </Label>
+                                <Button x:Name="cancelButton" Style="{StaticResource cancelGridButton}"  Click="btn_cancel_Click" Grid.Column="2" Grid.Row="1"/>
+                                <Button x:Name="saveButton" Style="{StaticResource saveGridButton}" Click="btn_save_Click" Grid.Column="1" Grid.Row="1"/>
+                                <ComboBox x:Name="protocolComboBox" Grid.Row="1" Grid.Column="0" Style="{StaticResource protocolCbox}"/>
+                                <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" DataContext="{Binding ElementName=protocolComboBox,Path=SelectedValue}" Style="{StaticResource dGrid}" >
                                     <DataGrid.Resources>
                                         <Style TargetType="Label">
                                             <Style.Triggers>
@@ -317,7 +365,7 @@
                                         </DataTemplate>
                                     </DataGrid.Resources>
                                     <DataGrid.Columns>
-                                        <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="1*" >
+                                        <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="394" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate x:Name="column1test" DataType="local:PropertyItem">
                                                     <TextBlock x:Name="nomeprop" Style="{StaticResource cellLabel}" />
@@ -337,17 +385,18 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="419*"/>
-                                    <ColumnDefinition Width="78"/>
-                                    <ColumnDefinition Width="78"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="70*"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="90*"/>
                                 </Grid.RowDefinitions>
-                                <Label x:Name="gridTitle" Content="{Binding Name}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" FontSize="13.333" FontWeight="Bold" Height="30"/>
-                                <Button x:Name="saveButton" Content="Save"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="76" Height="20" Click="btn_saveProject_Click" HorizontalContentAlignment="Center" Margin="0,0,2,0" Grid.Column="2" Grid.Row="0"/>
-                                <Button x:Name="cancelButton" Content="Cancel"  Width="76" Click="btn_cancel_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Grid.Column="1" Grid.Row="0"/>
-                                <DataGrid x:Name="propGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" Style="{StaticResource dGrid}">
+                                <Label x:Name="gridTitle" Content="{Binding Name}" Style="{StaticResource gridTitleLabel}"/>
+                                <Button x:Name="saveButton" Style="{StaticResource saveGridButton}" Click="btn_saveProject_Click" Grid.Column="1" Grid.Row="1"/>
+                                <Button x:Name="cancelButton" Click="btn_cancel_Click" Style="{StaticResource cancelGridButton}"  Grid.Column="2" Grid.Row="1"/>
+                                <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource dGrid}">
                                     <DataGrid.Resources>
                                         <DataTemplate x:Name="checkboxTemplate" x:Key="checkboxTemplate">
                                             <CheckBox x:Name="checkbox_editMethod" Style="{StaticResource checkBoxCell}" LostFocus="checkbox_leaf_LostFocus"/>
@@ -380,31 +429,22 @@
                             <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="419*"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="35"/>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="90*"/>
                                 </Grid.RowDefinitions>
-                                <Label x:Name="gridTitle" Content="{Binding Name}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" FontSize="13.333" FontWeight="Bold" Height="30"/>
-                                <Button x:Name="saveButton" Content="Save"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="76" Height="20" Click="btn_save_Click" HorizontalContentAlignment="Center" Margin="0,0,2,0" Grid.Column="2" Grid.Row="1"/>
-                                <Button x:Name="cancelButton" Content="Cancel"  Width="76" Click="btn_cancel_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Grid.Column="1" Grid.Row="1"/>
-                                <ComboBox x:Name="protocolComboBox" DataContext="{Binding ViewNode}" ItemsSource="{Binding GroupViewList}" Grid.Row="1" Grid.Column="0" SelectedItem="{Binding First}" Margin="5,0,0,5" Padding="4,1,1,1"/>
-                                <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" DataContext="{Binding ElementName=protocolComboBox,Path=SelectedValue}" ItemsSource="{Binding Path=propertylist}" Style="{StaticResource dGrid}">
-                                    <DataGrid.Resources>
-                                        <Style TargetType="TextBlock" x:Key="cellName" >
-                                            <Setter Property="Padding" Value="1"/>
-                                            <Setter Property="Text" Value="{Binding Name}"/>
-                                            <Setter Property="VerticalAlignment" Value="Stretch"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Path=Common}" Value="False">
-                                                    <Setter Property="Background" Value="Red" />
-                                                    <Setter Property="Foreground" Value="White" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
+                                <Label x:Name="gridTitle" Grid.Column="0" Grid.Row="0" Style="{StaticResource gridTitleLabel}">
+                                    <TextBlock Text="{Binding StringFormat=Gruppo: {0},Path=Name}"/>
+                                </Label>
+                                <Button x:Name="cancelButton" Click="btn_cancel_Click" Grid.Column="2" Grid.Row="1" Style="{StaticResource cancelGridButton}"/>
+                                <Button x:Name="saveButton"  Click="btn_save_Click" Grid.Column="1" Grid.Row="1" Style="{StaticResource saveGridButton}"/>
+                                <ComboBox x:Name="protocolComboBox" Grid.Row="1" Grid.Column="0" Style="{StaticResource protocolCbox}" />
+                                <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" DataContext="{Binding ElementName=protocolComboBox,Path=SelectedValue}" ItemsSource="{Binding Path=propertylist}" Style="{StaticResource dGrid}">
+                                    <DataGrid.Resources> 
                                         <DataTemplate x:Name="checkboxTemplate" x:Key="checkboxTemplate">
                                             <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                 <CheckBox x:Name="checkbox_editMethod" Style="{StaticResource checkBoxCell}" LostFocus="checkBox_editMethod_LostFocus" KeyDown="checkbox_editMethod_KeyDown"/>
@@ -418,7 +458,7 @@
                                         </DataTemplate>
                                     </DataGrid.Resources>
                                     <DataGrid.Columns>
-                                        <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="1*" >
+                                        <DataGridTemplateColumn x:Name="namesColumn" Header="Nome" CanUserSort="True" Width="394" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate x:Name="column1test" DataType="local:PropertyItem">
                                                     <TextBlock x:Name="nomeprop" Style="{StaticResource cellName}" />
@@ -437,8 +477,6 @@
                     </ContentPresenter.Resources>
                 </ContentPresenter>
             </TabItem>
-
-
             <TabItem Header="Logiche" Height="20">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -465,7 +503,7 @@
     FontSize="10pt" Grid.Row="1" ShowLineNumbers="True" Grid.ColumnSpan="4"/>
                 </Grid>
             </TabItem>
-            <!--<TabItem x:Name="ProjectTab" Header="Progetto">
+            <!--<TabItem x:Name="ProjectTab" Header="Progetto" DataContext="{Binding ElementName=albero,Path=SelectedItem}">
                 <Grid Margin="0,1,0,-1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="155*"/>
@@ -482,9 +520,9 @@
                     <Label Content="Protocollo" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                     <Label Content="Attivo" Grid.Row="0" Grid.Column="2"/>
                     <Label Content="Log" Grid.Row="0" Grid.Column="3"/>
-                    <ComboBox x:Name="ProtocolsChoice" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="2" Grid.ColumnSpan="2"/>
-                    <CheckBox x:Name="enableProtocol" VerticalAlignment="Center" HorizontalAlignment="left" Grid.Column="2" Grid.Row="1" Margin="6,8,0,8"/>
-                    <TextBox Grid.Row="1" Grid.Column="3" Margin="4"/>
+                    <ComboBox x:Name="ProtocolsChoice" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Protocolli}"  HorizontalAlignment="Stretch" Margin="2" Grid.ColumnSpan="2"/>
+                    <CheckBox x:Name="enableProtocol" DataContext="{Binding ElementName=ProtocolsChoice,Path=SelectedValue}" IsChecked="{Binding Enabled}" VerticalAlignment="Center"  HorizontalAlignment="left" Grid.Column="2" Grid.Row="1" Margin="6,8,0,8"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Margin="4"  DataContext="{Binding ElementName=ProtocolsChoice,Path=SelectedValue}" Text="{Binding Log}"/>
                     <Label x:Name="gridTitle" Content="{Binding Name}" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,1,0,0" FontSize="13.333" FontWeight="Bold" Height="30" Grid.RowSpan="2"/>
                     <DataGrid x:Name="propGrid" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="3,3,3,0" Style="{StaticResource dGrid}">
                         <DataGrid.Resources>

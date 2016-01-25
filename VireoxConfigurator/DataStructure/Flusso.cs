@@ -42,29 +42,7 @@ namespace VireoxConfigurator
                 }
                 else
                     propertyValues.Add(pt.Key, "", pt.Value);
-            }
-            //for (int i = 0; i < fields.Length; i++)
-            //{
-            //    if (i == 1)
-            //        name = fields[i];
-            //    if (Regex.IsMatch(map[i + 1], "Abilitato") && !tookEnabled)
-            //    {
-            //        if (!Boolean.TryParse(fields[i], out abilitazione)) abilitazione = false;
-            //    }
-            //    else
-            //    {
-            //        // if (fields[i].Trim(' ') == "") continue;
-            //        if (!propertyValues.ContainsKey(map[i + 1]))
-            //        {
-            //            if (!propertyDefinitions.ContainsKey(map[i + 1]))
-            //            {
-            //                Logger.Log("Attenzione, nome proprietà non definito: " + protocolname + "." + map[i + 1], "Red");
-            //                continue;
-            //            }
-            //            propertyValues.Add(map[i + 1], fields[i], propertyDefinitions[map[i + 1]]);
-            //        }
-            //    }
-            //}            
+            }   
         }
 
         [XmlAttribute]
